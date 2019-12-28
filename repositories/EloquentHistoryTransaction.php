@@ -15,4 +15,12 @@ final class EloquentHistoryTransaction implements HistoryTransactionRepository
         return $historyTransaction;
     }
 
+
+    public function getStatisticByMonth()
+    {
+        return HistoryTransaction::find()
+            ->select(['SUM(sum) sum' , 'created_on', 'type'])
+            ->groupBy(['MONTH(created_on)', 'type'])
+            ->all();
+    }
 }

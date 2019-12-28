@@ -8,4 +8,6 @@ interface HistoryTransactionRepository
 {
     public function save(HistoryTransaction $historyTransaction): HistoryTransaction;
 
+    public function getStatisticByMonth();
+
 }

@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\repositories\contracts\HistoryTransactionRepository;
 use app\services\ChargeCommission;
 use app\services\InterestAccrual;
 use yii\filters\AccessControl;
@@ -12,18 +13,21 @@ class SiteController extends Controller
 
     private $interestAccrual;
     private $chargeCommission;
+    private $historyTransactionRepository;
 
     public function __construct(
         $id,
         $module,
         ChargeCommission $chargeCommission,
         InterestAccrual $interestAccrual,
+        HistoryTransactionRepository $historyTransactionRepository,
         $config = []
     )
     {
         parent::__construct($id, $module, $config);
         $this->interestAccrual = $interestAccrual;
         $this->chargeCommission = $chargeCommission;
+        $this->historyTransactionRepository = $historyTransactionRepository;
 
     }
 
@@ -71,7 +75,9 @@ class SiteController extends Controller
     public function actionIndex()
     {
 
-        return $this->render('index');
+        return $this->render('index',[
+            'items' => $this->historyTransactionRepository->getStatisticByMonth()
+        ]);
     }
 
     public function actionRunCron()
