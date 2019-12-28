@@ -33,7 +33,8 @@ $ docker-compose up -d --build
 Run migration:
 
 ```
-$ docker exec -it IDcontainer bash
+$ docker exec -it IDContainer(basic_php-fpm)  bash
+php composer install
 php yii migrate
 
 ```
