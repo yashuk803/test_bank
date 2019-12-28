@@ -9,10 +9,8 @@ $config = [
     'bootstrap' => ['log'],
     'container' => [
         'singletons' => [
-            'app\repositories\EmployeeRepository' => ['class' => 'app\repositories\YiiEmployeeRepository'],
             'app\repositories\contracts\ClientDepositRepository' => ['class' => 'app\repositories\EloquentClientDeposit'],
             'app\repositories\contracts\HistoryTransactionRepository' => ['class' => 'app\repositories\EloquentHistoryTransaction'],
-            'EmployeeService' => ['class' => 'app\services\EmployeeService'],
             'InterestAccrual' => ['class' => 'app\services\InterestAccrual'],
             'ChargeCommission' => ['class' => 'app\services\ChargeCommission'],
             'FactoryCommission' => ['class' => 'app\services\FactoryCommission'],
