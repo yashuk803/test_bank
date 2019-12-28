@@ -61,6 +61,10 @@ class ChargeCommission
             try {
                 $commissionSum = $this->getSumCommission($item->sum);
 
+                if($commissionSum  === 0) {
+                    continue;
+                }
+
                 $item->sum = $item->sum - $commissionSum;
 
                 $item->update_on = $currentDate;

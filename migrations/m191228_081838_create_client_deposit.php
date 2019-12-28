@@ -42,6 +42,31 @@ class m191228_081838_create_client_deposit extends Migration
                 'id',
                 'CASCADE'
             );
+
+            $this->insert('crm.client_deposit', [
+                'id_client'=>1,
+                'id_deposit'=>1,
+                'sum'=>1000,
+                'next_date_interest_accrual'=> '2020-01-28',
+                'created_on'=>'2019-12-28',
+            ]);
+
+            $this->insert('crm.client_deposit', [
+                'id_client'=>1,
+                'id_deposit'=>2,
+                'sum'=>500,
+                'next_date_interest_accrual'=> '2020-01-01',
+                'created_on'=>'2019-12-01',
+            ]);
+
+            $this->insert('crm.client_deposit', [
+                'id_client'=>2,
+                'id_deposit'=>1,
+                'sum'=>500,
+                'next_date_interest_accrual'=> '2020-01-01',
+                'created_on'=>'2019-12-01',
+            ]);
+
         }
     }
 

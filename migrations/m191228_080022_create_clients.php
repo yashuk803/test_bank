@@ -23,6 +23,22 @@ class m191228_080022_create_clients extends Migration
                 'date_birthday' => $this->date(),
                 'sex' => "ENUM('Male', 'Female') NOT NULL DEFAULT 'Male'",
             ], 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB');
+
+            $this->insert('crm.clients', [
+                'identification_number'=>'0125563689',
+                'first_name'=>'Igor',
+                'last_name'=>'Vulkanov',
+                'date_birthday'=>'1986-12-03',
+                'sex'=>'Male',
+            ]);
+
+            $this->insert('crm.clients', [
+                'identification_number'=>'0125563689',
+                'first_name'=>'Mariia',
+                'last_name'=>'Vulkanov',
+                'date_birthday'=>'1986-12-03',
+                'sex'=>'Female',
+            ]);
         }
     }
 

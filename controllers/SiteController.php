@@ -2,20 +2,28 @@
 
 namespace app\controllers;
 
+use app\services\ChargeCommission;
+use app\services\InterestAccrual;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
 
 class SiteController extends Controller
 {
 
+    private $interestAccrual;
+    private $chargeCommission;
+
     public function __construct(
         $id,
         $module,
+        ChargeCommission $chargeCommission,
+        InterestAccrual $interestAccrual,
         $config = []
     )
     {
         parent::__construct($id, $module, $config);
+        $this->interestAccrual = $interestAccrual;
+        $this->chargeCommission = $chargeCommission;
 
     }
 
@@ -30,16 +38,10 @@ class SiteController extends Controller
                 'only' => ['logout'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['run-cron'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['@', '?'],
                     ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::class,
-                'actions' => [
-                    'logout' => ['post'],
                 ],
             ],
         ];
@@ -70,6 +72,15 @@ class SiteController extends Controller
     {
 
         return $this->render('index');
+    }
+
+    public function actionRunCron()
+    {
+        $this->interestAccrual->execute();
+
+        if(\date('j', \strtotime(date('Y-m-d'))) === 1) {
+            $this->chargeCommission->execute();
+        }
     }
 
 }
