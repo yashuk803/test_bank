@@ -47,7 +47,7 @@ class m191228_081838_create_client_deposit extends Migration
                 'id_client'=>1,
                 'id_deposit'=>1,
                 'sum'=>1000,
-                'next_date_interest_accrual'=> '2020-01-28',
+                'next_date_interest_accrual'=> date('y-m-d'),
                 'created_on'=>'2019-12-28',
             ]);
 
@@ -55,7 +55,7 @@ class m191228_081838_create_client_deposit extends Migration
                 'id_client'=>1,
                 'id_deposit'=>2,
                 'sum'=>500,
-                'next_date_interest_accrual'=> '2020-01-01',
+                'next_date_interest_accrual'=> date('y-m-d'),
                 'created_on'=>'2019-12-01',
             ]);
 
@@ -63,7 +63,7 @@ class m191228_081838_create_client_deposit extends Migration
                 'id_client'=>2,
                 'id_deposit'=>1,
                 'sum'=>500,
-                'next_date_interest_accrual'=> '2020-01-01',
+                'next_date_interest_accrual'=> date('y-m-d'),
                 'created_on'=>'2019-12-01',
             ]);
 
