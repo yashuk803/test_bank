@@ -14,19 +14,13 @@ $this->title = 'My Yii Application';
             <tr>
                 <th scope="col">Дата</th>
                 <th scope="col">Сумма</th>
-                <th scope="col">#</th>
             </tr>
             </thead>
             <tbody>
             <?php foreach ($items as $item): ?>
                 <tr>
-                    <td><?= \date('m-Y', \strtotime($item->created_on)) ?></td>
-                    <td><?= $item->sum ?></td>
-                    <?php if ($item->type === 'Percent'): ?>
-                        <td>Прибыль</td>
-                    <?php elseif ($item->type === 'Commission'): ?>
-                        <td>Убыток</td>
-                    <?php endif; ?>
+                    <td><?= $item['date'] ?></td>
+                    <td><?= $item['sum'] ?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
