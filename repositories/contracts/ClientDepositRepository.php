@@ -11,4 +11,6 @@ interface ClientDepositRepository
     public function findNextDateInterestAccrual();
 
     public function findAll();
+
+    public function averageDepositAmountByGroup();
 }

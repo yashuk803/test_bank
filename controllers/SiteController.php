@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\repositories\contracts\ClientDepositRepository;
 use app\repositories\contracts\HistoryTransactionRepository;
 use app\services\ChargeCommission;
 use app\services\InterestAccrual;
@@ -14,6 +15,7 @@ class SiteController extends Controller
     private $interestAccrual;
     private $chargeCommission;
     private $historyTransactionRepository;
+    private $clientDepositRepository;
 
     public function __construct(
         $id,
@@ -21,6 +23,7 @@ class SiteController extends Controller
         ChargeCommission $chargeCommission,
         InterestAccrual $interestAccrual,
         HistoryTransactionRepository $historyTransactionRepository,
+        ClientDepositRepository $clientDepositRepository,
         $config = []
     )
     {
@@ -28,6 +31,7 @@ class SiteController extends Controller
         $this->interestAccrual = $interestAccrual;
         $this->chargeCommission = $chargeCommission;
         $this->historyTransactionRepository = $historyTransactionRepository;
+        $this->clientDepositRepository = $clientDepositRepository;
 
     }
 
@@ -76,7 +80,8 @@ class SiteController extends Controller
     {
 
         return $this->render('index',[
-            'items' => $this->historyTransactionRepository->getStatisticByMonth()
+            'itemStatistic' => $this->historyTransactionRepository->getStatisticByMonth(),
+            'groupAverage' => $this->clientDepositRepository->averageDepositAmountByGroup(),
         ]);
     }
 
