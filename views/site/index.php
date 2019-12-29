@@ -36,7 +36,7 @@ $this->title = 'My Yii Application';
             <tbody>
             <?php foreach ($groupAverage as $item): ?>
                 <tr>
-                    <td><?= $item['average'] ?></td>
+                    <td><?= $item['average'] ?? '-'?></td>
                     <td><?= $item['group_client'] ?></td>
                 </tr>
             <?php endforeach; ?>
